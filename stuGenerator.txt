@@ -1,0 +1,8 @@
+第一步：引入插件
+插件一定要放在同</pluginManagement>标签同级目录下
+
+第二步：添加generatorConfig.xml配置文件
+
+第三步：配置好mybatis
+
+第四步：找到Maven的plugins中的mybatis-generator，执行mybatis-generator:generate命令，生成POJO和Mapper

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--关联db.properties-->
+	<properties resource="db.properties"/>
+
+	<!--数据库中字段下划线命名格式自动转Java驼峰命名法-->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<typeAliases>
+		<!--为Worker起别名,麻烦-->
+		<!--<typeAlias type="com.vainglory.domain.Worker" alias="worker"/>-->
+		<!--为domain包中的所有类器别名，别名为类名，不区分大小写-->
+		<package name="com.vainglory.pojo"/>
+	</typeAliases>
+
+	<!--类型转换器，需要放在设置别名的后面-->
+	<!--
+	<typeHandlers>
+		<typeHandler handler="com.vainglory.typeHandler.AddressHandler" javaType="com.vainglory.domain.Address"/>
+	</typeHandlers>
+	-->
+
+	<!-- 和spring整合后 environments配置将废除 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- 使用jdbc事务管理 -->
+			<transactionManager type="JDBC" />
+			<!-- Mybatis内置数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<!--第一种方式，配置mapper文件-->
+		<!--<mapper resource="UserDaoMapper.xml"/>-->
+		<!--<mapper resource="com/vainglory/mapper/IWorkerDao.xml"/>-->
+
+        <!--第二种方式，配置Dao层接口，要求，Mapper文件和dao接口在同一个目录中，并且文件名相同-->
+        <!--不常用，了解-->
+        <!--<mapper resource="com/vainglory/mapper/IWorkerDao"/>-->
+        <!--第三种方式，配置整个Mapper包-->
+        <package name="com.vainglory.mapper"/>
+        
+	</mappers>
+</configuration>

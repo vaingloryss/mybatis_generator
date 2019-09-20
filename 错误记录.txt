@@ -1,0 +1,40 @@
+1、generator配置文件generatorConfig.xml标红
+http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd
+
+解决：
+不用管
+
+2、mybatis-generator插件引入时，一定要放在与</pluginManagement>同级的目录下，否则Maven中不会显示
+<pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+  <plugins>
+    ...
+  </plugins>
+</pluginManagement>
+
+<plugins>
+  <plugin>
+    <groupId>org.mybatis.generator</groupId>
+    <artifactId>mybatis-generator-maven-plugin</artifactId>
+    <version>1.3.7</version>
+    <executions>
+      <execution>
+        <id>Generate MyBatis Artifacts</id>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+      </execution>
+    </executions>
+    <dependencies>
+      <!--<dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>1.3.7</version>
+      </dependency>-->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.47</version>
+      </dependency>
+    </dependencies>
+  </plugin>
+</plugins>
